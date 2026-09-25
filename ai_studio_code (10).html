@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Cripta Encantada - Dulces Malditos | Hogwarts Orión</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07030e;
+      --card-bg: rgba(18, 7, 36, 0.95);
+      --border: #44246d;
+      --gold: #f6c85f;
+      --blood: #e11d48;
+      --purple: #9333ea;
+      --text: #f3e8ff;
+      --text-muted: #a395b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(94, 23, 235, 0.18) 0%, transparent 60%),
+        radial-gradient(circle at 10% 30%, rgba(225, 29, 72, 0.12) 0%, transparent 50%);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      min-height: 100vh;
+      padding: 16px 12px 60px;
+    }
+
+    .container { max-width: 860px; margin: 0 auto; }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 16px;
+      background: rgba(19, 9, 39, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .top-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-top-link {
+      background: #251042;
+      border: 1px solid #5a328c;
+      color: #e9d5ff;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+    .btn-top-link:hover {
+      background: #3c1a6b;
+      color: #fff;
+      border-color: var(--gold);
+    }
+
+    .sync-badge {
+      font-size: 0.72rem;
+      font-family: monospace;
+      padding: 3px 10px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .sync-badge.loading { background: rgba(245, 158, 11, 0.2); color: #fde047; border: 1px solid #f59e0b; }
+    .sync-badge.success { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid #10b981; }
+    .sync-badge.error { background: rgba(244, 63, 94, 0.2); color: #fda4af; border: 1px solid #f43f5e; }
+
+    .hero { text-align: center; padding: 6px 0 20px; }
+    .badge-halloween {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      background: rgba(159, 18, 57, 0.4);
+      border: 1px solid var(--blood);
+      color: #fca5a5;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+    h1.main-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 0 25px rgba(225, 29, 72, 0.5);
+      margin-bottom: 4px;
+    }
+    .sub-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+
+    .card-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+      margin-bottom: 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    label.field-lbl {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #d8b4fe;
+    }
+    input.text-input, select.select-input {
+      background: #090414;
+      border: 1px solid #4a287a;
+      color: #fff;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-family: inherit;
+      outline: none;
+      width: 100%;
+    }
+    input.text-input:focus, select.select-input:focus { border-color: var(--gold); }
+    input.text-input.client-input { color: var(--gold); font-weight: 700; }
+
+    .toggle-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 2px; }
+    .btn-toggle {
+      background: #090414;
+      border: 1px solid #4a287a;
+      color: #a395b8;
+      padding: 8px;
+      border-radius: 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .btn-toggle.active {
+      background: linear-gradient(135deg, #4c1d95, #6d28d9);
+      border-color: #a855f7;
+      color: #fff;
+    }
+    .btn-toggle.active.gift-mode {
+      background: linear-gradient(135deg, #881337, #be123c);
+      border-color: #f43f5e;
+    }
+
+    .gift-info-box {
+      background: rgba(136, 19, 55, 0.25);
+      border: 1px solid rgba(225, 29, 72, 0.45);
+      border-radius: 12px;
+      padding: 10px;
+      font-size: 0.75rem;
+    }
+
+    /* CANTIDAD 1, 3, 6 */
+    .qty-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .qty-card {
+      background: #090414;
+      border: 1px solid #4a287a;
+      padding: 10px 6px;
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .qty-card.selected {
+      background: rgba(246, 200, 95, 0.12);
+      border-color: var(--gold);
+      box-shadow: 0 0 12px rgba(246, 200, 95, 0.25);
+    }
+    .qty-icon { font-size: 1.2rem; }
+    .qty-name { font-size: 0.72rem; font-weight: 700; color: #ede9fe; margin-top: 2px; }
+    .qty-price { font-size: 0.75rem; font-weight: 800; color: var(--gold); margin-top: 2px; }
+
+    .action-bar {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(138, 92, 196, 0.25);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .price-total-badge { font-size: 0.85rem; color: #c4b5fd; }
+    .price-total-badge strong { font-size: 1.2rem; color: var(--gold); margin-left: 6px; font-family: monospace; }
+    
+    .btn-abrir-cripta {
+      background: linear-gradient(135deg, #f59e0b 0%, #ea580c 50%, #dc2626 100%);
+      color: #0b0417;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 14px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 15px rgba(234, 88, 12, 0.4);
+    }
+    .btn-abrir-cripta:hover { filter: brightness(1.1); transform: translateY(-2px); }
+    .btn-abrir-cripta:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* RESULTADOS */
+    .candies-grid {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      margin-top: 14px;
+    }
+    .candy-card {
+      border-radius: 14px;
+      padding: 12px 14px;
+      background: #0d051c;
+      border: 1px solid #4a287a;
+    }
+    .candy-card.pos {
+      background: linear-gradient(180deg, #09261a 0%, #05140d 100%);
+      border-color: #10b981;
+    }
+    .candy-card.neg {
+      background: linear-gradient(180deg, #2b0b1a 0%, #17040d 100%);
+      border-color: #f43f5e;
+    }
+    .candy-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      font-family: monospace;
+      color: #cbd5e1;
+      margin-bottom: 4px;
+    }
+    .candy-name { font-size: 0.88rem; font-weight: 700; color: #fff; }
+    .candy-outcome {
+      margin-top: 6px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      font-family: monospace;
+    }
+    .candy-outcome.pos { color: #34d399; }
+    .candy-outcome.neg { color: #f87171; }
+
+    .summary-box {
+      background: #14082c;
+      border: 2px solid rgba(246, 200, 95, 0.4);
+      border-radius: 20px;
+      padding: 18px;
+      margin-top: 18px;
+    }
+    .summary-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+      margin: 14px 0;
+    }
+    .stat-card {
+      background: #0b0518;
+      border: 1px solid #4a287a;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+    }
+    .stat-lbl { font-size: 0.68rem; text-transform: uppercase; color: #a78bfa; }
+    .stat-val { font-size: 1.25rem; font-weight: 900; font-family: monospace; margin-top: 2px; }
+    .stat-val.pos { color: #34d399; }
+    .stat-val.neg { color: #f87171; }
+
+    .btn-copy-ticket {
+      background: linear-gradient(135deg, #f59e0b, #ea580c);
+      color: #0b0417;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-copy-ticket:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+    /* =========================================================
+       HISTORIAL VISIBLE EN LA PÁGINA
+       ========================================================= */
+    .history-section-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+      margin-top: 24px;
+    }
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(138, 92, 196, 0.25);
+    }
+    .history-header h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .history-toolbar {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    @media(min-width: 600px) {
+      .history-toolbar {
+        grid-template-columns: 2fr 1fr auto;
+      }
+    }
+
+    .btn-tool {
+      background: #190933;
+      border: 1px solid #5a328c;
+      color: #e9d5ff;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+    .btn-tool:hover {
+      background: #2a1154;
+      border-color: var(--gold);
+      color: #fff;
+    }
+
+    .history-stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .h-stat-pill {
+      background: #090314;
+      border: 1px solid #3b1b68;
+      border-radius: 10px;
+      padding: 8px;
+      text-align: center;
+    }
+    .h-stat-lbl {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      color: #a78bfa;
+      font-weight: 700;
+    }
+    .h-stat-num {
+      font-size: 1.05rem;
+      font-weight: 900;
+      font-family: monospace;
+      color: #fff;
+      margin-top: 2px;
+    }
+
+    .history-item-card {
+      background: #090314;
+      border: 1px solid #3b1b68;
+      border-left: 4px solid var(--purple);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      transition: all 0.2s;
+    }
+    .history-item-card:hover {
+      border-color: #7c3aed;
+    }
+    .h-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .h-client-name {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+    .h-card-tags {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      font-size: 0.7rem;
+    }
+    .h-tag-pill {
+      background: #180933;
+      border: 1px solid #5a328c;
+      padding: 2px 8px;
+      border-radius: 999px;
+      color: #cbd5e1;
+    }
+    .h-card-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-family: monospace;
+      font-size: 0.75rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .h-metric-badge {
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid;
+    }
+    .h-metric-badge.pos { background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #34d399; }
+    .h-metric-badge.neg { background: rgba(244, 63, 94, 0.15); border-color: rgba(244, 63, 94, 0.4); color: #fda4af; }
+    .h-metric-badge.gold { background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.4); color: #fde047; }
+
+    .h-card-actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .btn-h-action {
+      background: #1e0b3d;
+      border: 1px solid #5a328c;
+      color: #e9d5ff;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-h-action:hover {
+      background: #371861;
+      border-color: var(--gold);
+      color: #fff;
+    }
+    .btn-h-action.copy-main {
+      background: linear-gradient(135deg, #d97706, #b45309);
+      border: none;
+      color: #fff;
+    }
+    .btn-h-action.danger {
+      border-color: rgba(244, 63, 94, 0.4);
+      color: #fda4af;
+    }
+    .btn-h-action.danger:hover {
+      background: rgba(244, 63, 94, 0.2);
+    }
+
+    .raw-ticket-box {
+      margin-top: 8px;
+      background: #05020a;
+      border: 1px solid #3b1b68;
+      border-radius: 8px;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 0.72rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      max-height: 200px;
+      overflow-y: auto;
+      display: none;
+    }
+    .raw-ticket-box.open { display: block; }
+
+    .toast {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: #000;
+      padding: 8px 20px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      z-index: 200;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="toast" class="toast">Mensaje</div>
+
+  <div class="container">
+    <header class="top-bar">
+      <div class="top-title">
+        <span>🩸</span>
+        <span>HOGWARTS ORIÓN • LA CRIPTA</span>
+      </div>
+      <div class="top-actions">
+        <button class="btn-top-link" onclick="irAlHistorial()">
+          <span>📜</span> Ver Historial
+        </button>
+        <div id="sync-status-indicator" class="sync-badge loading">
+          <span>☁️ Conectando...</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="badge-halloween">🎃 EDICIÓN ESPECIAL HALLOWEEN</div>
+      <h1 class="main-title">🩸 La Cripta Encantada 🕸️</h1>
+      <div class="sub-title">🍬 DULCES MALDITOS</div>
+    </section>
+
+    <!-- PANEL PRINCIPAL -->
+    <div class="card-box">
+      <div class="form-grid">
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div class="form-group">
+            <label class="field-lbl">🧛🏻 Atendido por:</label>
+            <input type="text" id="txt-trabajador" class="text-input" value="Encargada" placeholder="Tu nombre...">
+          </div>
+
+          <div class="form-group">
+            <label class="field-lbl">👤 Víctima (Cliente):</label>
+            <input type="text" id="txt-cliente" class="text-input client-input" placeholder="Ej: @Usuario">
+          </div>
+
+          <div class="form-group">
+            <label class="field-lbl">Modalidad:</label>
+            <div class="toggle-row">
+              <button type="button" id="btn-mode-personal" class="btn-toggle active" onclick="cambiarModo('personal')">
+                👤 Personal
+              </button>
+              <button type="button" id="btn-mode-gift" class="btn-toggle" onclick="cambiarModo('gift')">
+                🎁 Regalo
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div id="box-personal-house" class="form-group">
+            <label class="field-lbl">🏰 Casa:</label>
+            <select id="sel-buyer-house" class="select-input">
+              <option value="Extraño Mundo 🧡🎃">Extraño Mundo 🧡🎃</option>
+              <option value="La Otra Casa 🩶🪡">La Otra Casa 🩶🪡</option>
+              <option value="Salem 🖤🧹">Salem 🖤🧹</option>
+              <option value="Transylvania 🤎🦇">Transylvania 🤎🦇</option>
+            </select>
+          </div>
+
+          <div id="box-gift-config" class="gift-info-box" style="display:none;">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+              <div>
+                <label style="font-size:0.68rem; color:#fecdd3; display:block;">De (Compradora):</label>
+                <select id="sel-gift-buyer" class="select-input" style="padding:6px; font-size:0.75rem;">
+                  <option value="Extraño Mundo 🧡🎃">Extraño Mundo 🧡🎃</option>
+                  <option value="La Otra Casa 🩶🪡">La Otra Casa 🩶🪡</option>
+                  <option value="Salem 🖤🧹">Salem 🖤🧹</option>
+                  <option value="Transylvania 🤎🦇">Transylvania 🤎🦇</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:0.68rem; color:#fecdd3; display:block;">Para (Receptora):</label>
+                <select id="sel-gift-receiver" class="select-input" style="padding:6px; font-size:0.75rem;">
+                  <option value="La Otra Casa 🩶🪡">La Otra Casa 🩶🪡</option>
+                  <option value="Extraño Mundo 🧡🎃">Extraño Mundo 🧡🎃</option>
+                  <option value="Salem 🖤🧹">Salem 🖤🧹</option>
+                  <option value="Transylvania 🤎🦇">Transylvania 🤎🦇</option>
+                </select>
+              </div>
+            </div>
+            <span style="font-size:0.68rem; color:#fde047; display:block; margin-top:4px;">⚠️ Galeones afectan al comprador.</span>
+          </div>
+
+          <div class="form-group">
+            <label class="field-lbl">¿Cuántos Dulces?:</label>
+            <div class="qty-grid">
+              <div class="qty-card selected" id="card-qty-1" onclick="seleccionarCantidad(1)">
+                <div class="qty-icon">🍬</div>
+                <div class="qty-name">1 Dulce</div>
+                <div class="qty-price" id="lbl-price-1">12.500 G</div>
+              </div>
+              <div class="qty-card" id="card-qty-3" onclick="seleccionarCantidad(3)">
+                <div class="qty-icon">🍬🍬🍬</div>
+                <div class="qty-name">3 Dulces</div>
+                <div class="qty-price" id="lbl-price-3">35.000 G</div>
+              </div>
+              <div class="qty-card" id="card-qty-6" onclick="seleccionarCantidad(6)">
+                <div class="qty-icon">🎁☠️</div>
+                <div class="qty-name">6 Dulces</div>
+                <div class="qty-price" id="lbl-price-6">70.000 G</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-bar">
+        <div class="price-total-badge">
+          Costo: <strong id="lbl-total-price">12.500 G</strong>
+        </div>
+        <button id="btn-abrir" class="btn-abrir-cripta" onclick="generarDulcesDirecto()">
+          <span>¡ABRIR CRIPTA! 🍬☠️</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- AREA DE RESULTADOS -->
+    <div id="results-section" style="display:none;">
+      <h3 style="font-family:'Cinzel', serif; font-size:1.1rem; color:var(--gold); margin-bottom:8px;">
+        🍬 Dulces Obtenidos
+      </h3>
+      <div id="candies-container" class="candies-grid"></div>
+
+      <!-- RESUMEN FINAL Y BOTON COPIAR -->
+      <div class="summary-box">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <div>
+            <div style="font-size:0.75rem; color:var(--gold); font-weight:700;">DICTAMEN DE LA CRIPTA</div>
+            <h3 style="font-family:'Cinzel', serif; font-size:1.2rem;">Resumen Listo</h3>
+          </div>
+          <button class="btn-copy-ticket" onclick="copiarTicketActual()">
+            <span>Copiar para WhatsApp 📋</span>
+          </button>
+        </div>
+
+        <div class="summary-stats">
+          <div class="stat-card">
+            <div class="stat-lbl">Puntos Netos</div>
+            <div id="stat-points" class="stat-val">+0 pts</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-lbl">Galeones Netos</div>
+            <div id="stat-galleons" class="stat-val">+0 G</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-lbl">Costo Abonado</div>
+            <div id="stat-cost" class="stat-val" style="color:#e2e8f0;">12.500 G</div>
+          </div>
+        </div>
+
+        <div id="extra-effects-box" style="font-size:0.75rem; color:#fca5a5; margin-top:8px; line-height:1.4;"></div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         SECCIÓN DE HISTORIAL VISIBLE EN LA PÁGINA
+         ========================================================= -->
+    <div id="seccion-historial" class="history-section-box">
+      <div class="history-header">
+        <h2>
+          <span>📜</span> Historial de Ventas • En Vivo
+        </h2>
+        <button class="btn-tool" onclick="cargarHistorialFirebase(true)">
+          <span>🔄</span> Sincronizar Firebase
+        </button>
+      </div>
+
+      <!-- Resumen numérico -->
+      <div class="history-stats-bar">
+        <div class="h-stat-pill">
+          <div class="h-stat-lbl">Ventas Totales</div>
+          <div id="h-total-ventas" class="h-stat-num">0</div>
+        </div>
+        <div class="h-stat-pill">
+          <div class="h-stat-lbl">Puntos Netos</div>
+          <div id="h-total-puntos" class="h-stat-num">0 pts</div>
+        </div>
+        <div class="h-stat-pill">
+          <div class="h-stat-lbl">Galeones Netos</div>
+          <div id="h-total-galeones" class="h-stat-num">0 G</div>
+        </div>
+      </div>
+
+      <!-- Barra de filtro -->
+      <div class="history-toolbar">
+        <input 
+          type="text" 
+          id="txt-search-hist" 
+          class="text-input" 
+          placeholder="🔍 Buscar @víctima, encargada o casa..." 
+          oninput="filtrarHistorial()"
+        >
+        <select id="sel-filter-house" class="select-input" onchange="filtrarHistorial()">
+          <option value="ALL">Todas las Casas 🏰</option>
+          <option value="Extraño Mundo">Extraño Mundo 🧡🎃</option>
+          <option value="La Otra Casa">La Otra Casa 🩶🪡</option>
+          <option value="Salem">Salem 🖤🧹</option>
+          <option value="Transylvania">Transylvania 🤎🦇</option>
+        </select>
+        <button class="btn-tool" onclick="limpiarHistorialLocal()">
+          <span>🗑️</span> Limpiar Local
+        </button>
+      </div>
+
+      <!-- Lista de tiradas renderizadas directamente -->
+      <div id="history-items-container">
+        <div style="text-align:center; padding:25px; color:#94a3b8; font-size:0.85rem;">
+          🕯️ Cargando historial de la Cripta...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // URL OFICIAL DE FIREBASE REALTIME DATABASE
+    const RTDB_URL = 'https://la-cripta-encantada-af0fa-default-rtdb.firebaseio.com/historial.json';
+
+    const DULCES = [
+      { id: 1, name: "Chupetín de Scream", emoji: "🍭🔪" },
+      { id: 2, name: "Chocolate de Annabelle", emoji: "🍫🪆" },
+      { id: 3, name: "Caramelo de Drácula", emoji: "🍬🧛🏻" },
+      { id: 4, name: "Cupcake de Carrie", emoji: "🧁🩸" },
+      { id: 5, name: "Dona de IT", emoji: "🍩🎈" },
+      { id: 6, name: "Galleta de Chucky", emoji: "🍪🔪" },
+      { id: 7, name: "Manzana de Blancanieves Maldita", emoji: "🍎☠️" },
+      { id: 8, name: "Helado de Exorcista", emoji: "🍦👻" },
+      { id: 9, name: "Chocolate del Hombre Lobo", emoji: "🍫🐺" },
+      { id: 10, name: "Muffin de Frankenstein", emoji: "🧁⚡" },
+      { id: 11, name: "Gomitas de Beetlejuice", emoji: "🍬🪲" },
+      { id: 12, name: "Caramelo de Halloween", emoji: "🍭🎃" },
+      { id: 13, name: "Chocolate del Cementerio", emoji: "🍫🪦" },
+      { id: 14, name: "Galleta de la Bruja", emoji: "🍪🧙🏻‍♀️" },
+      { id: 15, name: "Dona de la Cripta", emoji: "🍩🕸️" },
+      { id: 16, name: "Torta de Agujas", emoji: "🍰💉" },
+      { id: 17, name: "Chocolate de la Casa Embrujada", emoji: "🍫🏚️" },
+      { id: 18, name: "Caramelos de la Ouija", emoji: "🍬🔮" },
+      { id: 19, name: "Cupcake del Demonio", emoji: "🧁😈" },
+      { id: 20, name: "Dulce de la Calabaza Maldita", emoji: "🍭🎃🩸" }
+    ];
+
+    const PRECIOS = {
+      personal: { 1: 12500, 3: 35000, 6: 70000 },
+      gift: { 1: 30000, 3: 85000, 6: 170000 }
+    };
+
+    let modoActual = 'personal';
+    let cantidadActual = 1;
+    let dulcesEnJuego = [];
+    let historial = JSON.parse(localStorage.getItem('hogwarts_cripta_historial') || '[]');
+
+    function safeTag(str) {
+      const s = String(str || 'Víctima').trim();
+      return s.startsWith('@') ? s : `@${s || 'Víctima'}`;
+    }
+
+    function toast(msg) {
+      const t = document.getElementById('toast');
+      if (!t) return;
+      t.innerText = msg;
+      t.style.display = 'block';
+      setTimeout(() => t.style.display = 'none', 2500);
+    }
+
+    function setSyncBadge(status, text) {
+      const badge = document.getElementById('sync-status-indicator');
+      if (!badge) return;
+      badge.className = 'sync-badge ' + status;
+      badge.innerHTML = `<span>${text}</span>`;
+    }
+
+    function irAlHistorial() {
+      const el = document.getElementById('seccion-historial');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function cambiarModo(modo) {
+      modoActual = modo;
+      document.getElementById('btn-mode-personal').className = 'btn-toggle' + (modo === 'personal' ? ' active' : '');
+      document.getElementById('btn-mode-gift').className = 'btn-toggle' + (modo === 'gift' ? ' active gift-mode' : '');
+      document.getElementById('box-personal-house').style.display = modo === 'personal' ? 'flex' : 'none';
+      document.getElementById('box-gift-config').style.display = modo === 'gift' ? 'block' : 'none';
+      actualizarPreciosUI();
+    }
+
+    function seleccionarCantidad(num) {
+      cantidadActual = num;
+      [1, 3, 6].forEach(n => {
+        const el = document.getElementById(`card-qty-${n}`);
+        if (el) el.className = 'qty-card' + (n === num ? ' selected' : '');
+      });
+      actualizarPreciosUI();
+    }
+
+    function actualizarPreciosUI() {
+      const p = PRECIOS[modoActual];
+      document.getElementById('lbl-price-1').innerText = p[1].toLocaleString('es-ES') + ' G';
+      document.getElementById('lbl-price-3').innerText = p[3].toLocaleString('es-ES') + ' G';
+      document.getElementById('lbl-price-6').innerText = p[6].toLocaleString('es-ES') + ' G';
+      document.getElementById('lbl-total-price').innerText = p[cantidadActual].toLocaleString('es-ES') + ' G';
+    }
+
+    function randomStep(min, max, step = 500) {
+      const count = Math.floor((max - min) / step);
+      return min + Math.floor(Math.random() * (count + 1)) * step;
+    }
+
+    function generarResultadoDirecto(dulce) {
+      const isPositive = Math.random() >= 0.70;
+
+      if (isPositive) {
+        const roll = Math.random();
+        if (roll < 0.45) {
+          const pts = randomStep(1000, 30000);
+          return { dulce, isPositive: true, title: `+${pts.toLocaleString('es-ES')} Pts ✨`, ptsDelta: pts, galDelta: 0 };
+        } else if (roll < 0.85) {
+          const gal = randomStep(1000, 30000);
+          return { dulce, isPositive: true, title: `+${gal.toLocaleString('es-ES')} Galeones 💰`, ptsDelta: 0, galDelta: gal };
+        } else if (roll < 0.94) {
+          return { dulce, isPositive: true, title: `Quitarle 20.000 pts a una casa ⚔️`, ptsDelta: 0, galDelta: 0, special: '⚔️ Quitar 20.000 pts a una casa rival' };
+        } else {
+          return { dulce, isPositive: true, title: `Suerte Maldita: Regala 1 dulce 🎁`, ptsDelta: 0, galDelta: 0, special: '🎁 Puede regalar 1 dulce a alguien' };
+        }
+      } else {
+        const roll = Math.random();
+        if (roll < 0.45) {
+          const pts = randomStep(1000, 30000);
+          return { dulce, isPositive: false, title: `-${pts.toLocaleString('es-ES')} Pts ☠️`, ptsDelta: -pts, galDelta: 0 };
+        } else if (roll < 0.85) {
+          const gal = randomStep(1000, 30000);
+          return { dulce, isPositive: false, title: `-${gal.toLocaleString('es-ES')} Galeones 💸`, ptsDelta: 0, galDelta: -gal };
+        } else if (roll < 0.93) {
+          return { dulce, isPositive: false, title: `Intercambio Oscuro (-10.000 pts) 🔄`, ptsDelta: -10000, galDelta: 0, special: '🔄 Pierde 10.000 pts y se transfieren a otra casa' };
+        } else {
+          return { dulce, isPositive: false, title: `Maldición Compartida (-10.000 pts) 🩸`, ptsDelta: -10000, galDelta: 0, special: '🩸 Pierde 10.000 pts y otra casa pierde 5.000 pts' };
+        }
+      }
+    }
+
+    async function syncConFirebase(record) {
+      setSyncBadge('loading', '⏳ Guardando...');
+      const btn = document.getElementById('btn-abrir');
+      if (btn) btn.disabled = true;
+
+      try {
+        const res = await fetch(RTDB_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(record)
+        });
+
+        if (!res.ok) throw new Error('Fallo HTTP ' + res.status);
+        const savedData = await res.json();
+        record.firebaseKey = savedData.name;
+
+        // Actualizar clave en localStorage
+        localStorage.setItem('hogwarts_cripta_historial', JSON.stringify(historial));
+
+        setSyncBadge('success', '✓ Sincronizado en Firebase');
+        toast('☁️ ¡Guardado en Firebase exitosamente!');
+      } catch (err) {
+        console.warn('Error al conectar con Firebase:', err);
+        setSyncBadge('error', '⚠️ Guardado Local');
+        toast('⚠️ Guardado localmente (sin conexión a Firebase)');
+      } finally {
+        if (btn) btn.disabled = false;
+        renderHistorialUI();
+        actualizarEstadisticas();
+      }
+    }
+
+    function generarDulcesDirecto() {
+      const clienteInput = document.getElementById('txt-cliente');
+      const cliente = clienteInput ? clienteInput.value.trim() : '';
+      if (!cliente) {
+        toast('⚠️ Ingresa el nombre o @usuario de la víctima');
+      }
+
+      const shuffled = [...DULCES].sort(() => Math.random() - 0.5);
+      dulcesEnJuego = [];
+      for (let i = 0; i < cantidadActual; i++) {
+        dulcesEnJuego.push(generarResultadoDirecto(shuffled[i % shuffled.length]));
+      }
+
+      const cont = document.getElementById('candies-container');
+      cont.innerHTML = '';
+      let netPts = 0;
+      let netGal = 0;
+      const specials = [];
+
+      dulcesEnJuego.forEach((item, index) => {
+        netPts += item.ptsDelta;
+        netGal += item.galDelta;
+        if (item.special) specials.push(item.special);
+
+        const card = document.createElement('div');
+        card.className = `candy-card ${item.isPositive ? 'pos' : 'neg'}`;
+        card.innerHTML = `
+          <div class="candy-top">
+            <span>PIEZA #${index + 1}</span>
+            <span>${item.isPositive ? '✨ PREMIO' : '☠️ MALDICIÓN'}</span>
+          </div>
+          <div class="candy-name">${item.dulce.emoji} ${item.dulce.name}</div>
+          <div class="candy-outcome ${item.isPositive ? 'pos' : 'neg'}">${item.title}</div>
+        `;
+        cont.appendChild(card);
+      });
+
+      const pEl = document.getElementById('stat-points');
+      pEl.innerText = (netPts > 0 ? '+' : '') + netPts.toLocaleString('es-ES') + ' pts';
+      pEl.className = 'stat-val ' + (netPts >= 0 ? 'pos' : 'neg');
+
+      const gEl = document.getElementById('stat-galleons');
+      gEl.innerText = (netGal > 0 ? '+' : '') + netGal.toLocaleString('es-ES') + ' G';
+      gEl.className = 'stat-val ' + (netGal >= 0 ? 'pos' : 'neg');
+
+      const cost = PRECIOS[modoActual][cantidadActual];
+      document.getElementById('stat-cost').innerText = cost.toLocaleString('es-ES') + ' G';
+
+      const extraBox = document.getElementById('extra-effects-box');
+      if (specials.length > 0) {
+        const unique = Array.from(new Set(specials));
+        extraBox.innerHTML = `<strong>⚠️ EFECTOS EXTRA:</strong><br>${unique.join('<br>')}`;
+      } else {
+        extraBox.innerHTML = '';
+      }
+
+      document.getElementById('results-section').style.display = 'block';
+      document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
+
+      const now = new Date();
+      const timeStr = `${now.getDate().toString().padStart(2, '0')}/${(now.getMonth() + 1).toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+      
+      const bH = modoActual === 'personal' ? document.getElementById('sel-buyer-house').value : document.getElementById('sel-gift-buyer').value;
+      const rH = modoActual === 'gift' ? document.getElementById('sel-gift-receiver').value : '';
+      const trabajador = (document.getElementById('txt-trabajador') ? document.getElementById('txt-trabajador').value.trim() : '') || 'Encargada';
+      const clientName = cliente || 'Víctima';
+      const ticketTxt = generarTicketTexto();
+
+      const record = {
+        id: Date.now(),
+        fecha: timeStr,
+        formattedDate: timeStr,
+        trabajador: trabajador,
+        worker: trabajador,
+        cliente: clientName,
+        client: clientName,
+        modalidad: modoActual,
+        mode: modoActual,
+        buyerHouse: bH,
+        casa: bH,
+        receiverHouse: rH,
+        costo: cost,
+        cost: cost,
+        totalCostGalleons: cost,
+        balancePuntos: netPts,
+        netPoints: netPts,
+        balanceGaleones: netGal,
+        netGalleons: netGal,
+        ticket: ticketTxt,
+        summaryText: ticketTxt
+      };
+
+      historial.unshift(record);
+      localStorage.setItem('hogwarts_cripta_historial', JSON.stringify(historial));
+
+      renderHistorialUI();
+      actualizarEstadisticas();
+      syncConFirebase(record);
+    }
+
+    function generarTicketTexto() {
+      const clienteInput = document.getElementById('txt-cliente');
+      const clienteRaw = (clienteInput ? clienteInput.value.trim() : '') || 'Víctima';
+      const trabajador = (document.getElementById('txt-trabajador') ? document.getElementById('txt-trabajador').value.trim() : '') || 'Encargada';
+      const cost = PRECIOS[modoActual][cantidadActual];
+      const clientTag = safeTag(clienteRaw);
+
+      let txt = `╭─── ⋆｡°✩🎃✩°｡⋆ ───╮\n`;
+      txt += `🩸 𝕷𝖆 𝕮𝖗𝖎𝖕𝖙𝖆 𝕰𝖓𝖈𝖆𝖓𝖙𝖆𝖉𝖆 🕸️\n`;
+      txt += `   🍬 𝐃𝐔𝐋𝐂𝐄𝐒 𝐌𝐀𝐋𝐃𝐈𝐓𝐎𝐒\n`;
+      txt += `╰─── ⋆｡°✩🎃✩°｡⋆ ───╯\n\n`;
+
+      txt += `👤 Víctima: ${clientTag}\n`;
+      txt += `🧛🏻 Atendido por: ${trabajador}\n`;
+
+      if (modoActual === 'gift') {
+        const bH = document.getElementById('sel-gift-buyer').value;
+        const rH = document.getElementById('sel-gift-receiver').value;
+        txt += `🎁 Modalidad: REGALO ENTRE CASAS\n`;
+        txt += `🏰 De: ${bH} ⟶ Para: ${rH}\n`;
+      } else {
+        const bH = document.getElementById('sel-buyer-house').value;
+        txt += `🛍️ Modalidad: COMPRA PERSONAL (${bH})\n`;
+      }
+
+      txt += `💰 Costo: ${cost.toLocaleString('es-ES')} G\n\n`;
+      txt += `──────── ⋆｡°🍬°｡⋆ ────────\n`;
+
+      let netPts = 0;
+      let netGal = 0;
+      const specials = [];
+
+      dulcesEnJuego.forEach((item, i) => {
+        netPts += item.ptsDelta;
+        netGal += item.galDelta;
+        const tag = item.isPositive ? '✨' : '☠️';
+        txt += `🍬 Dulce ${i + 1}: ${item.dulce.emoji} *${item.dulce.name}*\n`;
+        txt += `   ↳ ${tag} ${item.title}\n`;
+        if (item.special) specials.push(item.special);
+      });
+
+      txt += `──────── ⋆｡°🎃°｡⋆ ────────\n`;
+      txt += `📊 *BALANCE TOTAL:*\n`;
+      txt += `✨ Puntos: *${(netPts > 0 ? '+' : '') + netPts.toLocaleString('es-ES')} pts*\n`;
+      txt += `💰 Galeones: *${(netGal > 0 ? '+' : '') + netGal.toLocaleString('es-ES')} G* (Afecta al comprador)\n`;
+
+      if (specials.length > 0) {
+        txt += `\n⚠️ *EFECTOS EXTRA:*\n`;
+        const unique = Array.from(new Set(specials));
+        unique.forEach(s => txt += `• ${s}\n`);
+      }
+
+      txt += `\n🕸️ *Hogwarts Orión 2026* 🎃`;
+      return txt;
+    }
+
+    function copiarTicketActual() {
+      const ticket = generarTicketTexto();
+      navigator.clipboard.writeText(ticket).then(() => {
+        toast('¡Ticket copiado para WhatsApp! 📋');
+      });
+    }
+
+    // =========================================================
+    // LÓGICA DE HISTORIAL EN VIVO
+    // =========================================================
+
+    async function cargarHistorialFirebase(manual = false) {
+      setSyncBadge('loading', manual ? 'Sincronizando...' : 'Conectando...');
+      try {
+        const res = await fetch(RTDB_URL);
+        if (!res.ok) throw new Error('Respuesta HTTP no válida');
+        const data = await res.json();
+
+        if (data && typeof data === 'object') {
+          const cloudList = Object.keys(data)
+            .filter(key => data[key] && typeof data[key] === 'object')
+            .map(key => {
+              const item = data[key];
+              const client = String(item.cliente || item.client || 'Víctima').trim();
+              const worker = String(item.trabajador || item.worker || 'Encargada').trim();
+              const mode = item.modalidad || item.mode || 'personal';
+              const cost = item.costo || item.cost || item.totalCostGalleons || 0;
+              const netPts = item.balancePuntos !== undefined ? item.balancePuntos : (item.netPoints !== undefined ? item.netPoints : 0);
+              const netGal = item.balanceGaleones !== undefined ? item.balanceGaleones : (item.netGalleons !== undefined ? item.netGalleons : 0);
+              const date = item.fecha || item.formattedDate || '25/09';
+              const ticket = item.ticket || item.summaryText || '';
+
+              let house = item.buyerHouse || item.casa || '';
+              if (!house && ticket) {
+                if (ticket.includes('Extraño Mundo')) house = 'Extraño Mundo 🧡🎃';
+                else if (ticket.includes('La Otra Casa')) house = 'La Otra Casa 🩶🪡';
+                else if (ticket.includes('Salem')) house = 'Salem 🖤🧹';
+                else if (ticket.includes('Transylvania')) house = 'Transylvania 🤎🦇';
+              }
+              if (!house) house = 'Extraño Mundo 🧡🎃';
+
+              return {
+                id: item.id ? String(item.id) : key,
+                firebaseKey: key,
+                fecha: date,
+                trabajador: worker,
+                cliente: client,
+                modalidad: mode,
+                buyerHouse: house,
+                costo: cost,
+                balancePuntos: netPts,
+                balanceGaleones: netGal,
+                ticket: ticket
+              };
+            });
+
+          const map = new Map();
+          cloudList.forEach(r => map.set(r.id || r.firebaseKey, r));
+
+          historial.forEach(localRec => {
+            if (!localRec) return;
+            const k = localRec.id || localRec.firebaseKey;
+            if (k && !map.has(k)) {
+              map.set(k, localRec);
+            }
+          });
+
+          historial = Array.from(map.values());
+          historial.sort((a, b) => (Number(b.id) || 0) - (Number(a.id) || 0));
+
+          localStorage.setItem('hogwarts_cripta_historial', JSON.stringify(historial));
+          setSyncBadge('success', `✓ Conectado (${cloudList.length})`);
+          if (manual) toast('¡Historial sincronizado con Firebase! 🔄');
+        } else {
+          setSyncBadge('success', '✓ Firebase Listo');
+        }
+      } catch (err) {
+        console.warn('Firebase error:', err);
+        setSyncBadge('error', '⚠️ Modo Local');
+        if (manual) toast('Modo local: no se pudo sincronizar');
+      }
+
+      renderHistorialUI();
+      actualizarEstadisticas();
+    }
+
+    function renderHistorialUI(lista = null) {
+      const cont = document.getElementById('history-items-container');
+      if (!cont) return;
+
+      const items = lista || historial;
+
+      if (!items || items.length === 0) {
+        cont.innerHTML = `
+          <div style="text-align:center; padding:25px; color:#94a3b8; font-size:0.85rem;">
+            🕯️ Aún no hay tiradas guardadas. ¡Abre un dulce arriba para verla aquí!
+          </div>
+        `;
+        return;
+      }
+
+      cont.innerHTML = '';
+      items.forEach(item => {
+        if (!item) return;
+        const card = document.createElement('div');
+        card.className = 'history-item-card';
+
+        const clientClean = safeTag(item.cliente || item.client);
+        const workerName = item.trabajador || item.worker || 'Encargada';
+        const house = item.buyerHouse || item.casa || 'Extraño Mundo 🧡🎃';
+        const costVal = Number(item.costo || item.cost || 0);
+        const pts = Number(item.balancePuntos !== undefined ? item.balancePuntos : (item.netPoints || 0));
+        const gal = Number(item.balanceGaleones !== undefined ? item.balanceGaleones : (item.netGalleons || 0));
+        const ptsClass = pts > 0 ? 'pos' : (pts < 0 ? 'neg' : 'gold');
+        const galClass = gal > 0 ? 'pos' : (gal < 0 ? 'neg' : 'gold');
+        const dateVal = item.fecha || item.formattedDate || '25/09';
+        const ticketTxt = item.ticket || item.summaryText || '';
+
+        card.innerHTML = `
+          <div class="h-card-top">
+            <div>
+              <span class="h-client-name">👤 ${clientClean}</span>
+              <span style="font-size:0.72rem; color:#94a3b8; margin-left:6px;">por ${workerName}</span>
+            </div>
+            <div class="h-card-tags">
+              <span class="h-tag-pill">${house}</span>
+              <span style="font-family:monospace; color:#64748b;">${dateVal}</span>
+            </div>
+          </div>
+
+          <div class="h-card-metrics">
+            <span class="h-metric-badge ${ptsClass}">
+              ${pts > 0 ? '+' : ''}${pts.toLocaleString('es-ES')} pts
+            </span>
+            <span class="h-metric-badge ${galClass}">
+              ${gal > 0 ? '+' : ''}${gal.toLocaleString('es-ES')} G
+            </span>
+            <span class="h-metric-badge gold">
+              ${costVal.toLocaleString('es-ES')} G
+            </span>
+          </div>
+
+          <div class="h-card-actions">
+            <button class="btn-h-action" onclick="toggleDrawer('${item.id}')">
+              👁️ Ver Ticket
+            </button>
+            <button class="btn-h-action copy-main" onclick="copiarTicketDeHistorial('${item.id}')">
+              📋 Copiar WhatsApp
+            </button>
+            <button class="btn-h-action danger" onclick="borrarRegistro('${item.id}', '${item.firebaseKey || ''}')" title="Eliminar">
+              🗑️
+            </button>
+          </div>
+
+          <div id="drawer-${item.id}" class="raw-ticket-box">${ticketTxt}</div>
+        `;
+
+        cont.appendChild(card);
+      });
+    }
+
+    function toggleDrawer(id) {
+      const d = document.getElementById(`drawer-${id}`);
+      if (d) d.classList.toggle('open');
+    }
+
+    function copiarTicketDeHistorial(id) {
+      const item = historial.find(h => h && h.id == id);
+      const txt = item ? (item.ticket || item.summaryText || '') : '';
+      if (txt) {
+        navigator.clipboard.writeText(txt).then(() => {
+          toast(`¡Ticket copiado para WhatsApp! 📋`);
+        });
+      }
+    }
+
+    async function borrarRegistro(id, firebaseKey) {
+      if (!confirm('¿Eliminar este registro?')) return;
+      historial = historial.filter(h => h && h.id != id);
+      localStorage.setItem('hogwarts_cripta_historial', JSON.stringify(historial));
+      renderHistorialUI();
+      actualizarEstadisticas();
+      toast('Registro eliminado 🗑️');
+
+      if (firebaseKey) {
+        try {
+          const deleteUrl = `https://la-cripta-encantada-af0fa-default-rtdb.firebaseio.com/historial/${firebaseKey}.json`;
+          await fetch(deleteUrl, { method: 'DELETE' });
+        } catch (e) {
+          console.warn('Error al borrar en Firebase:', e);
+        }
+      }
+    }
+
+    function filtrarHistorial() {
+      const searchEl = document.getElementById('txt-search-hist');
+      const q = searchEl ? searchEl.value.toLowerCase().trim() : '';
+      const houseEl = document.getElementById('sel-filter-house');
+      const hFilter = houseEl ? houseEl.value : 'ALL';
+
+      const filtered = historial.filter(item => {
+        if (!item) return false;
+        const c = String(item.cliente || item.client || '').toLowerCase();
+        const w = String(item.trabajador || item.worker || '').toLowerCase();
+        const h = String(item.buyerHouse || item.casa || '').toLowerCase();
+
+        const matchQ = c.includes(q) || w.includes(q) || h.includes(q);
+        const matchH = (hFilter === 'ALL') || h.includes(hFilter.toLowerCase());
+        return matchQ && matchH;
+      });
+
+      renderHistorialUI(filtered);
+    }
+
+    function actualizarEstadisticas() {
+      const vEl = document.getElementById('h-total-ventas');
+      const pEl = document.getElementById('h-total-puntos');
+      const gEl = document.getElementById('h-total-galeones');
+      if (!vEl) return;
+
+      let pts = 0;
+      let gal = 0;
+      historial.forEach(h => {
+        if (!h) return;
+        pts += Number(h.balancePuntos !== undefined ? h.balancePuntos : (h.netPoints || 0));
+        gal += Number(h.balanceGaleones !== undefined ? h.balanceGaleones : (h.netGalleons || 0));
+      });
+
+      vEl.innerText = historial.length;
+      pEl.innerText = (pts > 0 ? '+' : '') + pts.toLocaleString('es-ES') + ' pts';
+      gEl.innerText = (gal > 0 ? '+' : '') + gal.toLocaleString('es-ES') + ' G';
+    }
+
+    function limpiarHistorialLocal() {
+      if (confirm('¿Deseas vaciar el historial guardado localmente?')) {
+        historial = [];
+        localStorage.removeItem('hogwarts_cripta_historial');
+        renderHistorialUI();
+        actualizarEstadisticas();
+        toast('Historial local limpiado');
+      }
+    }
+
+    // Inicialización segura única
+    let appInited = false;
+    function initApp() {
+      if (appInited) return;
+      appInited = true;
+      actualizarPreciosUI();
+      renderHistorialUI();
+      actualizarEstadisticas();
+      cargarHistorialFirebase();
+    }
+
+    window.addEventListener('DOMContentLoaded', initApp);
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      initApp();
+    }
+  </script>
+</body>
+</html>
