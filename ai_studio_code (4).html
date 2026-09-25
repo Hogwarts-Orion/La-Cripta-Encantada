@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Cripta Encantada - Dulces Malditos | Hogwarts Orión</title>
+  <meta name="description" content="Marcador oficial y ruleta de Dulces Malditos de Halloween para Hogwarts Orión.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Creepster&family=Special+Elite&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07030e;
+      --card-bg: rgba(18, 7, 36, 0.95);
+      --border: #44246d;
+      --gold: #f6c85f;
+      --blood: #e11d48;
+      --purple: #9333ea;
+      --text: #f3e8ff;
+      --text-muted: #a395b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(94, 23, 235, 0.18) 0%, transparent 60%),
+        radial-gradient(circle at 10% 30%, rgba(225, 29, 72, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 90% 70%, rgba(249, 115, 22, 0.1) 0%, transparent 50%);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      min-height: 100vh;
+      padding: 16px 12px 60px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* BARRA SUPERIOR */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 16px;
+      background: rgba(19, 9, 39, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(8px);
+    }
+    .top-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-rules-header {
+      background: #251042;
+      border: 1px solid #5a328c;
+      color: #dfd0ff;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-rules-header:hover {
+      background: #371861;
+      border-color: var(--gold);
+      color: #fff;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 10px 0 25px;
+    }
+    .badge-halloween {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      background: rgba(159, 18, 57, 0.4);
+      border: 1px solid var(--blood);
+      color: #fca5a5;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    h1.main-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 0 25px rgba(225, 29, 72, 0.5);
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+    .sub-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .hero-lore {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* CARD BOX */
+    .card-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+      margin-bottom: 24px;
+    }
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(138, 92, 196, 0.25);
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+    .card-head h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      color: #e9d5ff;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    label.field-lbl {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #d8b4fe;
+    }
+    input.text-input, select.select-input {
+      background: #090414;
+      border: 1px solid #4a287a;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input.text-input:focus, select.select-input:focus {
+      border-color: var(--gold);
+    }
+    input.text-input.client-input {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* MODALIDAD */
+    .toggle-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 2px;
+    }
+    .btn-toggle {
+      background: #090414;
+      border: 1px solid #4a287a;
+      color: #a395b8;
+      padding: 10px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.05em;
+    }
+    .btn-toggle.active {
+      background: linear-gradient(135deg, #4c1d95, #6d28d9);
+      border-color: #a855f7;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(109, 40, 217, 0.4);
+    }
+    .btn-toggle.active.gift-mode {
+      background: linear-gradient(135deg, #881337, #be123c);
+      border-color: #f43f5e;
+      box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4);
+    }
+
+    .gift-info-box {
+      background: rgba(136, 19, 55, 0.25);
+      border: 1px solid rgba(225, 29, 72, 0.45);
+      border-radius: 16px;
+      padding: 14px;
+      margin-top: 6px;
+      font-size: 0.8rem;
+    }
+    .gift-rules-hint {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(225, 29, 72, 0.3);
+      font-size: 0.74rem;
+      color: #fecdd3;
+      line-height: 1.4;
+    }
+
+    /* CANTIDAD */
+    .qty-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .qty-card {
+      background: #090414;
+      border: 1px solid #4a287a;
+      padding: 10px 8px;
+      border-radius: 14px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .qty-card:hover {
+      border-color: #7c3aed;
+    }
+    .qty-card.selected {
+      background: rgba(246, 200, 95, 0.12);
+      border-color: var(--gold);
+      box-shadow: 0 0 15px rgba(246, 200, 95, 0.25);
+    }
+    .qty-icon { font-size: 1.3rem; margin-bottom: 2px; }
+    .qty-name { font-size: 0.74rem; font-weight: 700; color: #ede9fe; }
+    .qty-price { font-size: 0.75rem; font-weight: 800; color: var(--gold); margin-top: 3px; }
+
+    /* ACTION BAR */
+    .action-bar {
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(138, 92, 196, 0.25);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .price-total-badge {
+      font-size: 0.85rem;
+      color: #c4b5fd;
+    }
+    .price-total-badge strong {
+      font-size: 1.25rem;
+      color: var(--gold);
+      margin-left: 6px;
+      font-family: monospace;
+    }
+    .btn-abrir-cripta {
+      background: linear-gradient(135deg, #f59e0b 0%, #ea580c 50%, #dc2626 100%);
+      color: #0b0417;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 16px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(234, 88, 12, 0.4);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-abrir-cripta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(234, 88, 12, 0.6);
+      filter: brightness(1.1);
+    }
+
+    /* DULCES */
+    .candies-area { margin-top: 28px; }
+    .candies-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(18, 7, 36, 0.9);
+      border: 1px solid var(--border);
+      padding: 12px 18px;
+      border-radius: 16px;
+      margin-bottom: 16px;
+    }
+    .candies-header h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      color: #f3e8ff;
+    }
+    .btn-reveal-all {
+      background: #5b21b6;
+      border: 1px solid #8b5cf6;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .btn-reveal-all:hover { background: #6d28d9; }
+
+    .candies-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .candies-grid.single {
+      max-width: 360px;
+      margin: 0 auto;
+      grid-template-columns: 1fr;
+    }
+
+    .candy-card {
+      border-radius: 18px;
+      padding: 18px;
+      border: 2px dashed #582a8e;
+      background: linear-gradient(180deg, #160a2b 0%, #0d051c 100%);
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      user-select: none;
+    }
+    .candy-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(246, 200, 95, 0.15);
+    }
+    .candy-card.revealed {
+      border-style: solid;
+      cursor: default;
+      transform: none;
+    }
+    .candy-card.revealed.positive {
+      background: linear-gradient(180deg, #09261a 0%, #05140d 100%);
+      border-color: #10b981;
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+    }
+    .candy-card.revealed.negative {
+      background: linear-gradient(180deg, #2b0b1a 0%, #17040d 100%);
+      border-color: #f43f5e;
+      box-shadow: 0 8px 25px rgba(244, 63, 94, 0.2);
+    }
+
+    .card-top-tag {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      font-family: monospace;
+      color: #a78bfa;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+    }
+    .unopened-icon {
+      font-size: 3rem;
+      text-align: center;
+      margin: 12px 0;
+      filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.4));
+    }
+    .btn-bite-action {
+      background: linear-gradient(90deg, #d97706, #dc2626);
+      color: #000;
+      border: none;
+      padding: 9px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .revealed-name {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .revealed-lore {
+      font-size: 0.72rem;
+      color: #cbd5e1;
+      font-style: italic;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+    .outcome-pill {
+      border-radius: 10px;
+      padding: 8px 10px;
+      text-align: center;
+      margin-bottom: 10px;
+      border: 1px solid;
+    }
+    .outcome-pill.pos {
+      background: rgba(16, 185, 129, 0.25);
+      border-color: rgba(16, 185, 129, 0.5);
+      color: #6ee7b7;
+    }
+    .outcome-pill.neg {
+      background: rgba(244, 63, 94, 0.25);
+      border-color: rgba(244, 63, 94, 0.5);
+      color: #fda4af;
+    }
+    .outcome-pill-title {
+      font-weight: 900;
+      font-size: 0.92rem;
+      font-family: monospace;
+    }
+    .outcome-pill-desc {
+      font-size: 0.7rem;
+      margin-top: 3px;
+      line-height: 1.25;
+      color: #e2e8f0;
+    }
+
+    .select-target-house, .input-target-person {
+      width: 100%;
+      background: #000;
+      border: 1px solid #6b21a8;
+      border-radius: 8px;
+      padding: 6px 8px;
+      color: #fff;
+      font-size: 0.72rem;
+      margin-top: 4px;
+      outline: none;
+    }
+
+    /* SUMMARY TICKET */
+    .summary-box {
+      background: #14082c;
+      border: 2px solid rgba(246, 200, 95, 0.4);
+      border-radius: 24px;
+      padding: 24px;
+      margin-top: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    .summary-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+    .stat-card {
+      background: #0b0518;
+      border: 1px solid #4a287a;
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .stat-lbl {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: #a78bfa;
+      letter-spacing: 0.05em;
+    }
+    .stat-val {
+      font-size: 1.4rem;
+      font-weight: 900;
+      font-family: monospace;
+      margin-top: 2px;
+    }
+    .stat-val.pos { color: #34d399; }
+    .stat-val.neg { color: #f87171; }
+    .stat-hint {
+      font-size: 0.68rem;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    .btn-copy-ticket {
+      background: linear-gradient(135deg, #f59e0b, #ea580c);
+      color: #0b0417;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 14px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(234, 88, 12, 0.4);
+      transition: all 0.2s;
+    }
+    .btn-copy-ticket:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
+
+    /* HISTORIAL */
+    .history-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+    .history-entry {
+      background: #090414;
+      border-left: 4px solid var(--purple);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+      font-size: 0.82rem;
+      position: relative;
+    }
+    .btn-copy-single {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #2a114f;
+      border: 1px solid #6b21a8;
+      color: #e9d5ff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-card {
+      background: #120726;
+      border: 2px solid var(--gold);
+      border-radius: 24px;
+      max-width: 650px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 24px;
+      position: relative;
+    }
+    .btn-close-modal {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: #260f47;
+      border: none;
+      color: #fff;
+      font-size: 1.2rem;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: #000;
+      padding: 10px 24px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.82rem;
+      box-shadow: 0 6px 20px rgba(246, 200, 95, 0.4);
+      z-index: 200;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="toast" class="toast">Mensaje</div>
+
+  <div class="container">
+    <!-- BARRA SUPERIOR -->
+    <header class="top-bar">
+      <div class="top-title">
+        <span>🩸</span>
+        <span>HOGWARTS ORIÓN • LA CRIPTA</span>
+      </div>
+      <button class="btn-rules-header" onclick="abrirModalReglas()">📜 REGLAS & PRECIOS</button>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="badge-halloween">
+        <span>🎃</span> EDICIÓN ESPECIAL HALLOWEEN
+      </div>
+      <h1 class="main-title">🩸 La Cripta Encantada 🕸️</h1>
+      <div class="sub-title">🍬 DULCES MALDITOS</div>
+      <p class="hero-lore">"Cada dulce esconde una sorpresa… pero nadie sabe si será un premio glorioso o una maldición de ultratumba."</p>
+    </section>
+
+    <!-- PANEL PRINCIPAL -->
+    <div class="card-box">
+      <div class="card-head">
+        <h2>🎃 Preparar Pedido de la Cripta</h2>
+        <span style="font-size:0.75rem; color:var(--gold); font-family:monospace;">20 Sabores al Azar 🎲</span>
+      </div>
+
+      <div class="form-grid">
+        <!-- Lado Izquierdo -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div class="form-group">
+            <label class="field-lbl">🧛🏻 Mago / Encargado que atiende:</label>
+            <input type="text" id="txt-trabajador" class="text-input" value="Sepulturero de la Cripta" placeholder="Tu nombre...">
+          </div>
+
+          <div class="form-group">
+            <label class="field-lbl">👤 Víctima (Cliente):</label>
+            <input type="text" id="txt-cliente" class="text-input client-input" placeholder="Ej: @HarryPotter o Nombre">
+          </div>
+
+          <div class="form-group">
+            <label class="field-lbl">Modalidad de Compra:</label>
+            <div class="toggle-row">
+              <button type="button" id="btn-mode-personal" class="btn-toggle active" onclick="cambiarModo('personal')">
+                👤 Personal
+              </button>
+              <button type="button" id="btn-mode-gift" class="btn-toggle" onclick="cambiarModo('gift')">
+                🎁 Regalo Casas
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lado Derecho -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div id="box-personal-house" class="form-group">
+            <label class="field-lbl">🏰 Casa del Alumno:</label>
+            <select id="sel-buyer-house" class="select-input">
+              <option value="Gryffindor">🦁 Gryffindor</option>
+              <option value="Slytherin">🐍 Slytherin</option>
+              <option value="Ravenclaw">🦅 Ravenclaw</option>
+              <option value="Hufflepuff">🦡 Hufflepuff</option>
+            </select>
+          </div>
+
+          <div id="box-gift-config" class="gift-info-box" style="display:none;">
+            <div style="font-weight:700; color:#fca5a5; margin-bottom:8px;">🎁 Regalo entre Casas</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+              <div>
+                <label style="font-size:0.68rem; color:#fecdd3; display:block; margin-bottom:3px;">Casa Compradora:</label>
+                <select id="sel-gift-buyer" class="select-input" style="padding:6px; font-size:0.75rem;">
+                  <option value="Gryffindor">🦁 Gryffindor</option>
+                  <option value="Slytherin">🐍 Slytherin</option>
+                  <option value="Ravenclaw">🦅 Ravenclaw</option>
+                  <option value="Hufflepuff">🦡 Hufflepuff</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:0.68rem; color:#fecdd3; display:block; margin-bottom:3px;">Casa Receptora:</label>
+                <select id="sel-gift-receiver" class="select-input" style="padding:6px; font-size:0.75rem;">
+                  <option value="Slytherin">🐍 Slytherin</option>
+                  <option value="Gryffindor">🦁 Gryffindor</option>
+                  <option value="Ravenclaw">🦅 Ravenclaw</option>
+                  <option value="Hufflepuff">🦡 Hufflepuff</option>
+                </select>
+              </div>
+            </div>
+            <div class="gift-rules-hint">
+              🕸️ Límite: <strong>Hasta 10 dulces por día</strong> de una casa a otra.<br>
+              💰 <strong>Galeones:</strong> Afectan siempre al comprador.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="field-lbl">¿Cuántos Dulces Malditos?:</label>
+            <div class="qty-grid">
+              <div class="qty-card selected" id="card-qty-1" onclick="seleccionarCantidad(1)">
+                <div class="qty-icon">🍬</div>
+                <div class="qty-name">1 Dulce</div>
+                <div class="qty-price" id="lbl-price-1">12.500 G</div>
+              </div>
+              <div class="qty-card" id="card-qty-3" onclick="seleccionarCantidad(3)">
+                <div class="qty-icon">🍬🍬🍬</div>
+                <div class="qty-name">3 Dulces</div>
+                <div class="qty-price" id="lbl-price-3">35.000 G</div>
+              </div>
+              <div class="qty-card" id="card-qty-10" onclick="seleccionarCantidad(10)">
+                <div class="qty-icon">🎁☠️</div>
+                <div class="qty-name">Caja de 10</div>
+                <div class="qty-price" id="lbl-price-10">120.000 G</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra de Acción -->
+      <div class="action-bar">
+        <div class="price-total-badge">
+          Total a cobrar: <strong id="lbl-total-price">12.500 G</strong>
+        </div>
+        <button class="btn-abrir-cripta" onclick="generarDulces()">
+          <span>¡ABRIR LA CRIPTA! 🍬☠️</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- AREA DE DULCES EN JUEGO -->
+    <div id="candies-section" class="candies-area" style="display:none;">
+      <div class="candies-header">
+        <div>
+          <h3 id="lbl-candies-count">🍬 Dulces Malditos en Juego</h3>
+          <span style="font-size:0.75rem; color:#a78bfa;">Muerde cada dulce para descubrir tu suerte.</span>
+        </div>
+        <button class="btn-reveal-all" onclick="morderTodos()">Morder Todos a la Vez 🩸</button>
+      </div>
+
+      <div id="candies-container" class="candies-grid"></div>
+
+      <!-- RESUMEN FINAL -->
+      <div id="summary-section" class="summary-box" style="display:none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <div>
+            <div style="font-size:0.75rem; color:var(--gold); font-weight:700; text-transform:uppercase;">Dictamen de la Cripta</div>
+            <h3 style="font-family:'Cinzel', serif; font-size:1.3rem;">Resumen Total del Bocado Mágico</h3>
+          </div>
+          <button class="btn-copy-ticket" onclick="copiarTicketActual()">
+            <span>Copiar Ticket para WhatsApp 📋</span>
+          </button>
+        </div>
+
+        <div class="summary-stats">
+          <div class="stat-card">
+            <div class="stat-lbl">Puntos Netos</div>
+            <div id="stat-points" class="stat-val">+0 pts</div>
+            <div id="stat-points-hint" class="stat-hint">Puntos para la casa</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-lbl">Galeones Netos</div>
+            <div id="stat-galleons" class="stat-val">+0 G</div>
+            <div class="stat-hint" style="color:#fde047;">⚠️ Siempre afecta al comprador</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-lbl">Costo Abonado</div>
+            <div id="stat-cost" class="stat-val" style="color:#e2e8f0;">12.500 G</div>
+            <div id="stat-mode-hint" class="stat-hint">Compra Personal</div>
+          </div>
+        </div>
+
+        <div style="text-align:center; margin-top:16px;">
+          <button class="btn-rules-header" style="background:#4c1d95; padding:10px 20px; font-size:0.8rem;" onclick="guardarEnHistorial()">
+            📜 Guardar en Historial de la Cripta
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATALOGO DE LOS 20 DULCES -->
+    <div class="card-box" style="margin-top:28px;">
+      <div class="card-head">
+        <h2>🍭 Los 20 Dulces del Terror de la Cripta</h2>
+        <span style="font-size:0.75rem; color:#a78bfa; font-family:monospace;">Catálogo Oficial</span>
+      </div>
+      <div id="catalogo-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:8px;"></div>
+    </div>
+
+    <!-- HISTORIAL -->
+    <div class="history-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h2 style="font-family:'Cinzel', serif; font-size:1.15rem; color:#f3e8ff;">📜 Cripta de Registros • Historial</h2>
+        <button onclick="limpiarHistorial()" style="background:transparent; border:none; color:#f87171; font-size:0.75rem; cursor:pointer;">Limpiar Historial</button>
+      </div>
+      <div id="history-list">No hay registros aún.</div>
+    </div>
+  </div>
+
+  <!-- MODAL DE REGLAS -->
+  <div id="rules-modal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="btn-close-modal" onclick="cerrarModalReglas()">✕</button>
+      <div style="text-align:center; margin-bottom:16px;">
+        <div style="font-size:0.75rem; color:var(--blood); font-weight:800; text-transform:uppercase;">Estatuto Oficial de Halloween</div>
+        <h2 style="font-family:'Cinzel', serif; font-size:1.6rem; color:var(--gold);">🩸 La Cripta Encantada 🕸️</h2>
+        <div style="font-family:'Cinzel', serif; font-size:1.1rem; color:#fca5a5;">🍬 DULCES MALDITOS • HOGWARTS ORIÓN</div>
+      </div>
+
+      <div style="font-size:0.82rem; color:#cbd5e1; line-height:1.6; white-space:pre-wrap; background:#090414; padding:16px; border-radius:14px; border:1px solid #4a287a;" id="rules-text-content"></div>
+
+      <div style="margin-top:16px; text-align:center;">
+        <button class="btn-copy-ticket" onclick="copiarTextoReglas()">Copiar Anuncio Oficial 📋</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const DULCES = [
+      { id: 1, name: "Chupetín de Scream", emoji: "🍭🔪", lore: "Sabor a cereza metálica que te hace escuchar un teléfono sonando..." },
+      { id: 2, name: "Chocolate de Annabelle", emoji: "🍫🪆", lore: "Amargo con una mirada de porcelana que parece seguirte." },
+      { id: 3, name: "Caramelo de Drácula", emoji: "🍬🧛🏻", lore: "Relleno con esencia de vampiro de los Cárpatos y sangre lunar." },
+      { id: 4, name: "Cupcake de Carrie", emoji: "🧁🩸", lore: "Glaseado carmesí telequinético que estalla con furia." },
+      { id: 5, name: "Dona de IT", emoji: "🍩🎈", lore: "Flota suavemente sobre un charco pluvial... ¡Todos flotan abajo!" },
+      { id: 6, name: "Galleta de Chucky", emoji: "🍪🔪", lore: "Crujiente y traviesa, rellena con la malicia de un muñeco diabólico." },
+      { id: 7, name: "Manzana de Blancanieves Maldita", emoji: "🍎☠️", lore: "Bañada en veneno oscuro de reina malvada." },
+      { id: 8, name: "Helado de Exorcista", emoji: "🍦👻", lore: "Helada mezcla verdosa que hace girar tu cabeza 360 grados." },
+      { id: 9, name: "Chocolate del Hombre Lobo", emoji: "🍫🐺", lore: "Elaborado bajo la luna llena con aullidos salvajes." },
+      { id: 10, name: "Muffin de Frankenstein", emoji: "🧁⚡", lore: "Chisporrotea con descargas eléctricas y suturas de azúcar." },
+      { id: 11, name: "Gomitas de Beetlejuice", emoji: "🍬🪲", lore: "Rayadas de blanco y negro que se retuercen si dices su nombre." },
+      { id: 12, name: "Caramelo de Halloween", emoji: "🍭🎃", lore: "La esencia pura del 31 de octubre: calabazas humeantes y velas." },
+      { id: 13, name: "Chocolate del Cementerio", emoji: "🍫🪦", lore: "Polvo de lápidas antiguas con trufas de tierra negra y frío sepulcral." },
+      { id: 14, name: "Galleta de la Bruja", emoji: "🍪🧙🏻‍♀️", lore: "Horneada en el caldero secreto de Salem con patas de araña confitadas." },
+      { id: 15, name: "Dona de la Cripta", emoji: "🍩🕸️", lore: "Cubierta con telarañas de caramelo hilado y rocío de mausoleo." },
+      { id: 16, name: "Torta de Agujas", emoji: "🍰💉", lore: "Un pastel punzante y peligroso; cada bocado exige coraje." },
+      { id: 17, name: "Chocolate de la Casa Embrujada", emoji: "🍫🏚️", lore: "Sabor a madera vieja, puertas chirriantes y sombras que susurran." },
+      { id: 18, name: "Caramelos de la Ouija", emoji: "🍬🔮", lore: "Si los sostienes en la lengua deletrearán misterios del más allá." },
+      { id: 19, name: "Cupcake del Demonio", emoji: "🧁😈", lore: "Puro fuego infernal y especias del averno que encienden el alma." },
+      { id: 20, name: "Dulce de la Calabaza Maldita", emoji: "🍭🎃🩸", lore: "La joya más codiciada de la cripta: néctar de calabaza bañado en sangre." }
+    ];
+
+    const PRECIOS = {
+      personal: { 1: 12500, 3: 35000, 10: 120000 },
+      gift: { 1: 30000, 3: 85000, 10: 300000 }
+    };
+
+    const REGLAS_TEXTO = `╭─── ⋆｡°✩🎃✩°｡⋆ ───╮
+🩸 𝕷𝖆 𝕮𝖗𝖎𝖕𝖙𝖆 𝕰𝖓𝖈𝖆𝖓𝖙𝖆𝖉𝖆 🕸️
+   🍬 𝐃𝐔𝐋𝐂𝐄𝐒 𝐌𝐀𝐋𝐃𝐈𝐓𝐎𝐒
+╰─── ⋆｡°✩🎃✩°｡⋆ ───╯
+
+🎃 Este Halloween, cada dulce esconde una sorpresa… pero nadie sabe si será un premio o una maldición. ☠️
+
+🍬 𝟐𝟎 𝐝𝐮𝐥𝐜𝐞𝐬 diferentes inspirados en el terror.
+⚠️ Los sabores se asignan completamente al azar.
+
+🩸 ¿QUÉ PUEDE TOCARTE?
+🎁 Galeones 💰
+✨ Puntos
+🎃 Premios especiales
+☠️ Pérdidas o maldiciones
+
+🍭 𝐎𝐏𝐂𝐈𝐎𝐍𝐄𝐒 𝐃𝐄 𝐂𝐎𝐌𝐏𝐑𝐀
+🍬 1 dulce → 12.500G
+🍬🍬🍬 3 dulces → 35.000G
+🎁 Caja de 10 → 120.000G
+
+🎁 𝐑𝐄𝐆𝐀𝐋𝐎𝐒 𝐄𝐍𝐓𝐑𝐄 𝐂𝐀𝐒𝐀𝐒
+También podés comprar dulces para regalar a otra casa:
+🍬 1 dulce → 30.000G
+🍬🍬🍬 3 dulces → 85.000G
+🎁 10 dulces → 300.000G
+
+🕸️ El límite de regalos es de *hasta 10 dulces por día de una casa a otra*.
+💰 Los galeones obtenidos de los dulces *afectarán al comprador*, incluso cuando los dulces hayan sido enviados como regalo a otra casa.
+
+👻 Comprá, regalá y descubrí qué te depara la maldición…
+
+╭─── ⋆｡°✩🕷️✩°｡⋆ ───╮
+       🩸 ¿𝐓𝐄 𝐀𝐓𝐑𝐄𝐕𝐄𝐒
+              𝐀 𝐄𝐍𝐓𝐑𝐀𝐑? 🩸
+╰─── ⋆｡°✩🕷️✩°｡⋆ ───╯
+
+*PREMIOS*
++Puntos 
++Galeones
++Beneficio: poder quitarle 20.000 puntos a una casa 
++Suerte maldita: podés elegir a una persona para regalarle un dulce 
+
+*PERDIDAS*
+-Puntos 
+-Galeones
+-Intercambio oscuro: perdés 10.000 puntos y otra casa elegida por vos los recibe
+-Maldición compartida: perdés 10.000 puntos y elegís otra casa para que pierda 5.000 puntos tmb`;
+
+    let modoActual = 'personal';
+    let cantidadActual = 1;
+    let dulcesEnJuego = [];
+    let historial = JSON.parse(localStorage.getItem('hogwarts_cripta_historial') || '[]');
+
+    function toast(msg) {
+      const t = document.getElementById('toast');
+      if (!t) return;
+      t.innerText = msg;
+      t.style.display = 'block';
+      setTimeout(() => t.style.display = 'none', 2500);
+    }
+
+    function cambiarModo(modo) {
+      modoActual = modo;
+      document.getElementById('btn-mode-personal').className = 'btn-toggle' + (modo === 'personal' ? ' active' : '');
+      document.getElementById('btn-mode-gift').className = 'btn-toggle' + (modo === 'gift' ? ' active gift-mode' : '');
+      
+      document.getElementById('box-personal-house').style.display = modo === 'personal' ? 'flex' : 'none';
+      document.getElementById('box-gift-config').style.display = modo === 'gift' ? 'block' : 'none';
+      
+      actualizarPreciosUI();
+    }
+
+    function seleccionarCantidad(num) {
+      cantidadActual = num;
+      [1, 3, 10].forEach(n => {
+        const el = document.getElementById(`card-qty-${n}`);
+        if (el) el.className = 'qty-card' + (n === num ? ' selected' : '');
+      });
+      actualizarPreciosUI();
+    }
+
+    function actualizarPreciosUI() {
+      const p = PRECIOS[modoActual];
+      document.getElementById('lbl-price-1').innerText = p[1].toLocaleString('es-ES') + ' G';
+      document.getElementById('lbl-price-3').innerText = p[3].toLocaleString('es-ES') + ' G';
+      document.getElementById('lbl-price-10').innerText = p[10].toLocaleString('es-ES') + ' G';
+      document.getElementById('lbl-total-price').innerText = p[cantidadActual].toLocaleString('es-ES') + ' G';
+    }
+
+    function renderCatalogo() {
+      const cont = document.getElementById('catalogo-grid');
+      if (!cont) return;
+      cont.innerHTML = '';
+      DULCES.forEach(d => {
+        const item = document.createElement('div');
+        item.style.cssText = 'background:#090414; border:1px solid #3b1b68; border-radius:10px; padding:6px 10px; font-size:0.75rem; display:flex; align-items:center; gap:6px;';
+        item.innerHTML = `<span style="font-size:1.1rem;">${d.emoji.split(' ')[0]}</span> <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#e2e8f0;">${d.name}</span>`;
+        cont.appendChild(item);
+      });
+    }
+
+    function randomStep(min, max, step = 500) {
+      const count = Math.floor((max - min) / step);
+      return min + Math.floor(Math.random() * (count + 1)) * step;
+    }
+
+    function generarResultadoDulce(dulce) {
+      const isPositive = Math.random() >= 0.70;
+      const houses = ['Gryffindor', 'Slytherin', 'Ravenclaw', 'Hufflepuff'];
+      const randomHouse = houses[Math.floor(Math.random() * houses.length)];
+
+      if (isPositive) {
+        const roll = Math.random();
+        if (roll < 0.40) {
+          const pts = randomStep(1000, 30000);
+          return {
+            dulce, isPositive: true, type: 'points', title: `+${pts.toLocaleString('es-ES')} Puntos ✨`,
+            desc: '¡Bendición de la Cripta! Has cosechado energía mágica.', ptsDelta: pts, galDelta: 0, revealed: false
+          };
+        } else if (roll < 0.80) {
+          const gal = randomStep(1000, 30000);
+          return {
+            dulce, isPositive: true, type: 'galleons', title: `+${gal.toLocaleString('es-ES')} Galeones 💰`,
+            desc: '¡Oro de ultratumba! El cofre espectral premia al comprador.', ptsDelta: 0, galDelta: gal, revealed: false
+          };
+        } else if (roll < 0.90) {
+          return {
+            dulce, isPositive: true, type: 'steal', title: `¡Quitar 20.000 pts a una casa! ⚔️`,
+            desc: `Poder oscuro otorgado: puedes quitarle 20.000 puntos a una casa rival.`, ptsDelta: 0, galDelta: 0,
+            targetHouse: randomHouse, revealed: false
+          };
+        } else {
+          return {
+            dulce, isPositive: true, type: 'gift_curse', title: `¡Suerte Maldita: Dulce de Regalo! 🎁`,
+            desc: `Puedes elegir a cualquier persona para regalarle un dulce.`, ptsDelta: 0, galDelta: 0,
+            targetPerson: '', revealed: false
+          };
+        }
+      } else {
+        const roll = Math.random();
+        if (roll < 0.38) {
+          const pts = randomStep(1000, 30000);
+          return {
+            dulce, isPositive: false, type: 'points', title: `-${pts.toLocaleString('es-ES')} Puntos ☠️`,
+            desc: '¡Veneno fantasmal! Los espíritus drenan puntos.', ptsDelta: -pts, galDelta: 0, revealed: false
+          };
+        } else if (roll < 0.76) {
+          const gal = randomStep(1000, 30000);
+          return {
+            dulce, isPositive: false, type: 'galleons', title: `-${gal.toLocaleString('es-ES')} Galeones 💸`,
+            desc: '¡Tributo sepulcral! El comprador pierde galeones.', ptsDelta: 0, galDelta: -gal, revealed: false
+          };
+        } else if (roll < 0.88) {
+          return {
+            dulce, isPositive: false, type: 'dark_exchange', title: `-10.000 Pts ⟶ Intercambio Oscuro 🔄`,
+            desc: `Pierdes 10.000 puntos y otra casa elegida los recibe.`, ptsDelta: -10000, galDelta: 0,
+            targetHouse: randomHouse, revealed: false
+          };
+        } else {
+          return {
+            dulce, isPositive: false, type: 'shared_curse', title: `-10.000 Pts ⟶ Maldición Compartida 🩸`,
+            desc: `Pierdes 10.000 puntos y otra casa elegida pierde 5.000 puntos.`, ptsDelta: -10000, galDelta: 0,
+            targetHouse: randomHouse, revealed: false
+          };
+        }
+      }
+    }
+
+    function generarDulces() {
+      const cliente = document.getElementById('txt-cliente').value.trim();
+      if (!cliente) {
+        toast('⚠️ Ingresa el nombre o @usuario de la víctima (cliente)');
+      }
+
+      const shuffled = [...DULCES].sort(() => Math.random() - 0.5);
+      dulcesEnJuego = [];
+      for (let i = 0; i < cantidadActual; i++) {
+        const d = shuffled[i % shuffled.length];
+        dulcesEnJuego.push(generarResultadoDulce(d));
+      }
+
+      document.getElementById('candies-section').style.display = 'block';
+      document.getElementById('lbl-candies-count').innerText = `🍬 Dulces Malditos en Juego (${cantidadActual})`;
+      document.getElementById('summary-section').style.display = 'none';
+
+      renderDulcesCards();
+      document.getElementById('candies-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function renderDulcesCards() {
+      const cont = document.getElementById('candies-container');
+      cont.innerHTML = '';
+      cont.className = 'candies-grid' + (cantidadActual === 1 ? ' single' : '');
+
+      dulcesEnJuego.forEach((item, index) => {
+        const card = document.createElement('div');
+        if (!item.revealed) {
+          card.className = 'candy-card';
+          card.onclick = () => morderDulce(index);
+          card.innerHTML = `
+            <div class="card-top-tag">
+              <span>PIEZA #${index + 1}</span>
+              <span style="color:var(--gold);">SELLADO</span>
+            </div>
+            <div class="unopened-icon">🎃</div>
+            <div style="font-size:0.75rem; text-align:center; color:#94a3b8; font-style:italic; margin-bottom:12px;">¿Premio de gloria o maldición?</div>
+            <button class="btn-bite-action" onclick="event.stopPropagation(); morderDulce(${index})">¡Morder Dulce! 🩸</button>
+          `;
+        } else {
+          card.className = `candy-card revealed ${item.isPositive ? 'positive' : 'negative'}`;
+          let extraHtml = '';
+          if (item.type === 'steal' || item.type === 'dark_exchange' || item.type === 'shared_curse') {
+            const labelTxt = item.type === 'steal' ? 'Casa a la que se le quitan 20.000 pts:' : (item.type === 'dark_exchange' ? 'Casa que recibe los 10.000 pts:' : 'Casa cómplice (pierde 5.000 pts):');
+            extraHtml = `
+              <div style="margin-top:6px; font-size:0.7rem; color:var(--gold);">
+                ${labelTxt}
+                <select class="select-target-house" onchange="dulcesEnJuego[${index}].targetHouse = this.value">
+                  <option value="Slytherin" ${item.targetHouse === 'Slytherin' ? 'selected' : ''}>🐍 Slytherin</option>
+                  <option value="Gryffindor" ${item.targetHouse === 'Gryffindor' ? 'selected' : ''}>🦁 Gryffindor</option>
+                  <option value="Ravenclaw" ${item.targetHouse === 'Ravenclaw' ? 'selected' : ''}>🦅 Ravenclaw</option>
+                  <option value="Hufflepuff" ${item.targetHouse === 'Hufflepuff' ? 'selected' : ''}>🦡 Hufflepuff</option>
+                </select>
+              </div>`;
+          } else if (item.type === 'gift_curse') {
+            extraHtml = `
+              <div style="margin-top:6px; font-size:0.7rem; color:var(--gold);">
+                Estudiante para regalarle un dulce:
+                <input type="text" class="input-target-person" placeholder="@usuario o Nombre" value="${item.targetPerson || ''}" oninput="dulcesEnJuego[${index}].targetPerson = this.value">
+              </div>`;
+          }
+
+          card.innerHTML = `
+            <div class="card-top-tag">
+              <span>#${index + 1} • ${item.isPositive ? '✨ PREMIO' : '☠️ MALDICIÓN'}</span>
+              <span>${item.dulce.emoji.split(' ')[0]}</span>
+            </div>
+            <div>
+              <div class="revealed-name">${item.dulce.emoji} ${item.dulce.name}</div>
+              <div class="revealed-lore">"${item.dulce.lore}"</div>
+            </div>
+            <div class="outcome-pill ${item.isPositive ? 'pos' : 'neg'}">
+              <div class="outcome-pill-title">${item.title}</div>
+              <div class="outcome-pill-desc">${item.desc}</div>
+            </div>
+            ${extraHtml}
+            <div style="display:flex; justify-content:space-between; font-size:0.72rem; font-family:monospace; margin-top:8px; border-top:1px solid rgba(255,255,255,0.1); padding-top:6px;">
+              <span style="color:${item.ptsDelta > 0 ? '#34d399' : (item.ptsDelta < 0 ? '#f87171' : '#64748b')}">${item.ptsDelta !== 0 ? (item.ptsDelta > 0 ? '+' : '') + item.ptsDelta.toLocaleString('es-ES') + ' pts' : '—'}</span>
+              <span style="color:${item.galDelta > 0 ? '#fde047' : (item.galDelta < 0 ? '#f87171' : '#64748b')}">${item.galDelta !== 0 ? (item.galDelta > 0 ? '+' : '') + item.galDelta.toLocaleString('es-ES') + ' G' : '—'}</span>
+            </div>
+          `;
+        }
+        cont.appendChild(card);
+      });
+
+      checkSummaryReady();
+    }
+
+    function morderDulce(idx) {
+      dulcesEnJuego[idx].revealed = true;
+      renderDulcesCards();
+    }
+
+    function morderTodos() {
+      dulcesEnJuego.forEach(d => d.revealed = true);
+      renderDulcesCards();
+    }
+
+    function checkSummaryReady() {
+      const allRev = dulcesEnJuego.length > 0 && dulcesEnJuego.every(d => d.revealed);
+      const sumSec = document.getElementById('summary-section');
+      if (allRev) {
+        sumSec.style.display = 'block';
+
+        let netPts = 0;
+        let netGal = 0;
+        dulcesEnJuego.forEach(d => {
+          netPts += d.ptsDelta;
+          netGal += d.galDelta;
+        });
+
+        const pEl = document.getElementById('stat-points');
+        pEl.innerText = (netPts > 0 ? '+' : '') + netPts.toLocaleString('es-ES') + ' pts';
+        pEl.className = 'stat-val ' + (netPts >= 0 ? 'pos' : 'neg');
+
+        const gEl = document.getElementById('stat-galleons');
+        gEl.innerText = (netGal > 0 ? '+' : '') + netGal.toLocaleString('es-ES') + ' G';
+        gEl.className = 'stat-val ' + (netGal >= 0 ? 'pos' : 'neg');
+
+        const cost = PRECIOS[modoActual][cantidadActual];
+        document.getElementById('stat-cost').innerText = cost.toLocaleString('es-ES') + ' G';
+        document.getElementById('stat-mode-hint').innerText = modoActual === 'gift' ? 'Regalo entre Casas' : 'Compra Personal';
+      } else {
+        sumSec.style.display = 'none';
+      }
+    }
+
+    function generarTicketTexto() {
+      const cliente = document.getElementById('txt-cliente').value.trim() || 'Víctima';
+      const trabajador = document.getElementById('txt-trabajador').value.trim() || 'Sepulturero';
+      const cost = PRECIOS[modoActual][cantidadActual];
+      const clientTag = cliente.startsWith('@') ? cliente : `@${cliente}`;
+
+      let txt = `╭─── ⋆｡°✩🎃✩°｡⋆ ───╮\n`;
+      txt += `🩸 𝕷𝖆 𝕮𝖗𝖎𝖕𝖙𝖆 𝕰𝖓𝖈𝖆𝖓𝖙𝖆𝖉𝖆 🕸️\n`;
+      txt += `   🍬 𝐃𝐔𝐋𝐂𝐄𝐒 𝐌𝐀𝐋𝐃𝐈𝐓𝐎𝐒\n`;
+      txt += `╰─── ⋆｡°✩🎃✩°｡⋆ ───╯\n\n`;
+
+      txt += `👤 Víctima: ${clientTag}\n`;
+      txt += `🧛🏻 Atendido por: ${trabajador}\n`;
+
+      if (modoActual === 'gift') {
+        const bH = document.getElementById('sel-gift-buyer').value;
+        const rH = document.getElementById('sel-gift-receiver').value;
+        txt += `🎁 Modalidad: REGALO ENTRE CASAS\n`;
+        txt += `🏰 Casa Compradora: ${bH}\n`;
+        txt += `🎯 Casa Destinataria: ${rH}\n`;
+        txt += `⚠️ Nota: Los galeones afectan al comprador (${bH}).\n`;
+      } else {
+        const bH = document.getElementById('sel-buyer-house').value;
+        txt += `🛍️ Modalidad: COMPRA PERSONAL\n`;
+        txt += `🏰 Casa: ${bH}\n`;
+      }
+
+      txt += `💰 Costo abonado: ${cost.toLocaleString('es-ES')} G\n\n`;
+      txt += `──────── ⋆｡°🍬°｡⋆ ────────\n`;
+
+      let netPts = 0;
+      let netGal = 0;
+      const specials = [];
+
+      dulcesEnJuego.forEach((item, i) => {
+        netPts += item.ptsDelta;
+        netGal += item.galDelta;
+        const prefix = item.isPositive ? '✨ [PREMIO]' : '☠️ [MALDICIÓN]';
+        txt += `🍬 Dulce ${i + 1}: ${item.dulce.emoji} *${item.dulce.name}*\n`;
+        txt += `   ↳ ${prefix} ${item.title}\n`;
+
+        if (item.type === 'steal') {
+          const target = item.targetHouse ? `a la Casa ${item.targetHouse}` : 'a una Casa a elección';
+          specials.push(`⚔️ Quitar 20.000 puntos ${target}`);
+          txt += `   ↳ 🩸 Efecto: Quita 20.000 puntos ${target}\n`;
+        } else if (item.type === 'gift_curse') {
+          const rec = item.targetPerson ? `para ${item.targetPerson}` : '(A designar)';
+          specials.push(`🎁 Suerte Maldita: 1 dulce de regalo ${rec}`);
+          txt += `   ↳ 🎃 Efecto: Elige a una persona para regalarle un dulce ${rec}\n`;
+        } else if (item.type === 'dark_exchange') {
+          const target = item.targetHouse ? `a ${item.targetHouse}` : 'a otra Casa';
+          specials.push(`🔄 Intercambio Oscuro: -10.000 pts para la víctima y se transfieren ${target}`);
+          txt += `   ↳ 🔄 Efecto: Pierde 10.000 puntos y ${target} los recibe\n`;
+        } else if (item.type === 'shared_curse') {
+          const target = item.targetHouse ? `a ${item.targetHouse}` : 'a otra Casa';
+          specials.push(`🩸 Maldición Compartida: -10.000 pts víctima y -5.000 pts ${target}`);
+          txt += `   ↳ 🩸 Efecto: Pierde 10.000 puntos y ${target} pierde 5.000 puntos\n`;
+        }
+        txt += `\n`;
+      });
+
+      txt += `──────── ⋆｡°🎃°｡⋆ ────────\n`;
+      txt += `📊 *BALANCE TOTAL DE LA CRIPTA:*\n`;
+      txt += `✨ Puntos netos: *${(netPts > 0 ? '+' : '') + netPts.toLocaleString('es-ES')} pts*\n`;
+      txt += `💰 Galeones netos: *${(netGal > 0 ? '+' : '') + netGal.toLocaleString('es-ES')} G* (Afecta al comprador)\n`;
+
+      if (specials.length > 0) {
+        txt += `\n⚠️ *EFECTOS ESPECIALES ACTIVADOS:*\n`;
+        specials.forEach(s => txt += `• ${s}\n`);
+      }
+
+      txt += `\n🕸️ *Hogwarts Orión • La Cripta Encantada 2026* 🎃`;
+      return txt;
+    }
+
+    function copiarTicketActual() {
+      const ticket = generarTicketTexto();
+      navigator.clipboard.writeText(ticket).then(() => {
+        toast('¡Ticket copiado al portapapeles! 📋');
+      });
+    }
+
+    function guardarEnHistorial() {
+      const ticket = generarTicketTexto();
+      const cliente = document.getElementById('txt-cliente').value.trim() || 'Víctima';
+      const now = new Date();
+      const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+      
+      const record = {
+        id: Date.now(),
+        client: cliente,
+        time: timeStr,
+        ticket: ticket
+      };
+
+      historial.unshift(record);
+      localStorage.setItem('hogwarts_cripta_historial', JSON.stringify(historial));
+      renderHistorial();
+      toast('¡Guardado en el historial de la Cripta! 📜');
+    }
+
+    function renderHistorial() {
+      const cont = document.getElementById('history-list');
+      if (!cont) return;
+      if (historial.length === 0) {
+        cont.innerHTML = '<span style="color:#64748b; font-size:0.8rem;">No hay registros aún.</span>';
+        return;
+      }
+      cont.innerHTML = '';
+      historial.forEach(item => {
+        const el = document.createElement('div');
+        el.className = 'history-entry';
+        el.innerHTML = `
+          <button class="btn-copy-single" onclick="copiarHistorialItem(${item.id})">COPIAR 📋</button>
+          <div style="font-weight:700; color:var(--gold); margin-bottom:4px;">👤 ${item.client} (${item.time})</div>
+          <div style="font-family:monospace; font-size:0.75rem; color:#cbd5e1; white-space:pre-wrap; max-height:100px; overflow-y:auto;">${item.ticket}</div>
+        `;
+        cont.appendChild(el);
+      });
+    }
+
+    function copiarHistorialItem(id) {
+      const item = historial.find(h => h.id === id);
+      if (item) {
+        navigator.clipboard.writeText(item.ticket).then(() => {
+          toast('¡Ticket copiado desde historial! 📋');
+        });
+      }
+    }
+
+    function limpiarHistorial() {
+      if (confirm('¿Deseas purgar todo el historial de la Cripta?')) {
+        historial = [];
+        localStorage.removeItem('hogwarts_cripta_historial');
+        renderHistorial();
+        toast('Historial limpiado');
+      }
+    }
+
+    function abrirModalReglas() {
+      document.getElementById('rules-text-content').innerText = REGLAS_TEXTO;
+      document.getElementById('rules-modal').className = 'modal-overlay open';
+    }
+
+    function cerrarModalReglas() {
+      document.getElementById('rules-modal').className = 'modal-overlay';
+    }
+
+    function copiarTextoReglas() {
+      navigator.clipboard.writeText(REGLAS_TEXTO).then(() => {
+        toast('¡Estatuto copiado al portapapeles! 📜');
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderCatalogo();
+      actualizarPreciosUI();
+      renderHistorial();
+    });
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      renderCatalogo();
+      actualizarPreciosUI();
+      renderHistorial();
+    }
+  </script>
+</body>
+</html>
